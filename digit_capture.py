@@ -3,7 +3,6 @@ import cv2 as cv
 import numpy as np
 import sys
 import datetime
-import Forward_CNN as cnn
 import CNN_Model_Restore as predict
 
 width = 512
@@ -96,13 +95,10 @@ def detect():
     #cv.imshow('dilate', img_capture)
 
     img_norm = img_normal(img_capture)
-    # img_newshape = np.reshape(img_norm,[-1,28,28,1])
-    # print(img_newshape.shape)
 
     img_newshape = np.reshape(img_norm, [-1, 28 * 28])
     start = datetime.datetime.now()
     predict.detect(img_newshape)
-    # cnn.forward(img_newshape)
     end = datetime.datetime.now()
     print('cost time:%d s' % (end - start).seconds)
 
